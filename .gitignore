@@ -1,0 +1,26 @@
+# ROS 2 build artifacts
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+
+# External upstream repositories
+external/
+
+# Datasets, recordings, and generated data
+datasets/
+*.bag
+*.db3
+*.mcap
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# IDE/editor
+.vscode/
+.idea/
+
+# System
+.DS_Store
