@@ -12,14 +12,18 @@ def generate_launch_description():
     piper_gazebo_share = get_package_share_directory("piper_gazebo")
     piper_description_share = get_package_share_directory("piper_description")
 
-    # Gazebo needs the parent folder of piper_description because meshes are resolved as:
+    # Needed for PiPER meshes:
     # model://piper_description/meshes/...
     ros_share_parent = os.path.dirname(piper_description_share)
+
+    # Needed for our custom Gazebo models:
+    # model://realsense_d435i/meshes/d435.dae
+    gazebo_models_path = os.path.join(piper_gazebo_share, "models")
 
     world_file = os.path.join(
         piper_gazebo_share,
         "worlds",
-        "empty_piper_world.sdf",
+        "piper_lab_world.sdf",
     )
 
     xacro_file = os.path.join(
@@ -52,7 +56,7 @@ def generate_launch_description():
         package="ros_gz_sim",
         executable="create",
         arguments=[
-            "-world", "empty_piper_world",
+            "-world", "piper_lab_world",
             "-topic", "/robot_description",
             "-name", "piper",
             "-x", "0.0",
@@ -74,6 +78,10 @@ def generate_launch_description():
         SetEnvironmentVariable(
             name="GZ_SIM_RESOURCE_PATH",
             value=[
+                gazebo_models_path,
+                ":",
+                piper_gazebo_share,
+                ":",
                 ros_share_parent,
                 ":",
                 EnvironmentVariable("GZ_SIM_RESOURCE_PATH", default_value=""),

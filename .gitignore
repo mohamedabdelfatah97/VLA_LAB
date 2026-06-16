@@ -24,3 +24,5 @@ __pycache__/
 
 # System
 .DS_Store
+backups/
+**/export.log

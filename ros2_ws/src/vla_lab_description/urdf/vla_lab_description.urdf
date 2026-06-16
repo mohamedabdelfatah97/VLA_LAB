@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="vla_lab_description">
+  <link
+    name="vla_lab_base_link">
+    <inertial>
+      <origin
+        xyz="0.044467 0.0014433 0.016429"
+        rpy="0 0 0" />
+      <mass
+        value="37.163" />
+      <inertia
+        ixx="1.0649"
+        ixy="-0.00018813"
+        ixz="0.00023172"
+        iyy="4.6485"
+        iyz="0.012309"
+        izz="5.6105" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://vla_lab_description/meshes/vla_lab_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://vla_lab_description/meshes/vla_lab_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

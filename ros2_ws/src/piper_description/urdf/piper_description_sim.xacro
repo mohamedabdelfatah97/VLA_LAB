@@ -2,13 +2,16 @@
 <robot
   name="piper"
   xmlns:xacro="http://ros.org/wiki/xacro">
-<!-- world -->
-  <!-- <link name="world"/>
-  <joint name="fixed_base_joint" type="fixed">
-      <parent link="world"/>
-      <child link="base_link"/>
-  </joint> -->
 <!-- piper -->
+<!-- world dummy root link for ROS 2 / KDL -->
+<link name="world"/>
+
+<joint name="fixed_world_to_arm_base" type="fixed">
+  <parent link="world"/>
+  <child link="arm_base"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
 <link
     name="arm_base">
     <inertial>
