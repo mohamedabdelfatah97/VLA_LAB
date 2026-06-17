@@ -1,47 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
-     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
-     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot
-  name="vla_lab_description">
-  <link
-    name="vla_lab_base_link">
+<?xml version="1.0" ?>
+<robot name="vla_lab_description">
+  <link name="vla_lab_base_link">
     <inertial>
-      <origin
-        xyz="0.044467 0.0014433 0.016429"
-        rpy="0 0 0" />
-      <mass
-        value="37.163" />
-      <inertia
-        ixx="1.0649"
-        ixy="-0.00018813"
-        ixz="0.00023172"
-        iyy="4.6485"
-        iyz="0.012309"
-        izz="5.6105" />
+      <origin xyz="0.044467 0.0014433 0.016429" rpy="0 0 0"/>
+      <mass value="37.163"/>
+      <inertia ixx="1.0649" ixy="-0.00018813" ixz="0.00023172" iyy="4.6485" iyz="0.012309" izz="5.6105"/>
     </inertial>
     <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh
-          filename="package://vla_lab_description/meshes/vla_lab_base_link.STL" />
+        <mesh filename="package://vla_lab_description/meshes/vla_lab_base_link.STL"/>
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.75294 0.75294 0.75294 1" />
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1"/>
       </material>
     </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh
-          filename="package://vla_lab_description/meshes/vla_lab_base_link.STL" />
+        <mesh filename="package://vla_lab_description/meshes/vla_lab_base_link.STL"/>
       </geometry>
     </collision>
   </link>
+  <link name="d435i_link"/>
+  <joint name="d435i_joint" type="fixed">
+    <origin xyz="0.52326 0 0.75876" rpy="0 1.0143 -3.1416"/>
+    <parent link="vla_lab_base_link"/>
+    <child link="d435i_link"/>
+  </joint>
+  <link name="rgb_camera_optical_frame"/>
+  <joint name="rgb_camera_optical_joint" type="fixed">
+    <origin xyz="0.012 0.0325 0" rpy="-1.5707963267949 0 -1.5707963267949"/>
+    <parent link="d435i_link"/>
+    <child link="rgb_camera_optical_frame"/>
+  </joint>
+  <link name="left_ir_camera_optical_frame"/>
+  <joint name="left_ir_camera_optical_joint" type="fixed">
+    <origin xyz="0.012 0.0175 0" rpy="-1.5707963267949 0 -1.5707963267949"/>
+    <parent link="d435i_link"/>
+    <child link="left_ir_camera_optical_frame"/>
+  </joint>
+  <link name="right_ir_camera_optical_frame"/>
+  <joint name="right_ir_camera_optical_joint" type="fixed">
+    <origin xyz="0.012 -0.0325 0" rpy="-1.5707963267949 0 -1.5707963267949"/>
+    <parent link="d435i_link"/>
+    <child link="right_ir_camera_optical_frame"/>
+  </joint>
+  <link name="depth_camera_optical_frame"/>
+  <joint name="depth_camera_optical_joint" type="fixed">
+    <origin xyz="0.012 0.0175 0" rpy="-1.5707963267949 0 -1.5707963267949"/>
+    <parent link="d435i_link"/>
+    <child link="depth_camera_optical_frame"/>
+  </joint>
 </robot>
