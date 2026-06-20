@@ -18,7 +18,7 @@ def generate_piper_urdf(piper_xacro_path):
     # We can tune these after the first spawn test.
     piper_x = "-0.35"
     piper_y = "0.00"
-    piper_z = "0.735"
+    piper_z = "0.750"
 
     urdf_text = subprocess.check_output(
         ["xacro", piper_xacro_path],
