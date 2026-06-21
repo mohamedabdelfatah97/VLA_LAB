@@ -119,7 +119,7 @@ def generate_launch_description():
         ),
 
         ExecuteProcess(
-            cmd=["gz", "sim", "-v", "4", world_path],
+            cmd=["gz", "sim", "-v", "4", "-r", world_path],
             output="screen",
         ),
 
@@ -201,6 +201,18 @@ def generate_launch_description():
                 "-x", "0",
                 "-y", "0",
                 "-z", "0",
+            ],
+            output="screen",
+        ),
+
+
+        ExecuteProcess(
+            cmd=[
+                "ros2", "run", "ros_gz_bridge", "parameter_bridge",
+                "/vla_lab/d435i/image@sensor_msgs/msg/Image@gz.msgs.Image",
+                "/vla_lab/d435i/depth_image@sensor_msgs/msg/Image@gz.msgs.Image",
+                "/vla_lab/d435i/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
+                "/vla_lab/d435i/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
             ],
             output="screen",
         ),
