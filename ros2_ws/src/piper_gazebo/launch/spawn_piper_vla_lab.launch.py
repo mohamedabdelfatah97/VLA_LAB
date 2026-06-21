@@ -206,16 +206,32 @@ def generate_launch_description():
         ),
 
 
+        # Bridge image topics using the ROS optical camera frame.
         ExecuteProcess(
             cmd=[
                 "ros2", "run", "ros_gz_bridge", "parameter_bridge",
                 "/vla_lab/d435i/image@sensor_msgs/msg/Image@gz.msgs.Image",
                 "/vla_lab/d435i/depth_image@sensor_msgs/msg/Image@gz.msgs.Image",
                 "/vla_lab/d435i/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
-                "/vla_lab/d435i/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
                 "--ros-args",
+                "-r",
+                "__node:=d435i_image_bridge",
                 "-p",
                 "override_frame_id:=depth_camera_optical_frame",
+            ],
+            output="screen",
+        ),
+
+        # Gazebo's RGB-D point cloud uses the camera/body axes, so label it with d435i_link.
+        ExecuteProcess(
+            cmd=[
+                "ros2", "run", "ros_gz_bridge", "parameter_bridge",
+                "/vla_lab/d435i/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
+                "--ros-args",
+                "-r",
+                "__node:=d435i_points_bridge",
+                "-p",
+                "override_frame_id:=d435i_link",
             ],
             output="screen",
         ),
